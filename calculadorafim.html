@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .fundo {
+            background-image: linear-gradient(40deg, rgb(0, 0, 0), rgb(101, 100, 104));
+            height: 100vh;
+            color: rgb(176, 174, 182);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        
+        .calculadora {
+            position: absolute;
+            background-image: linear-gradient(100deg, rgb(34, 33, 33), rgb(10, 10, 8));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-width: 6px;
+            border-style: groove;
+            border-color: rgb(78, 7, 7);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .but {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            margin: 3px;
+            background-image: linear-gradient(45deg, rgb(245, 239, 244), rgb(102, 102, 89));
+            border: rgb(209, 255, 2);
+            border-style: groove;
+            border-color: #ffffff;
+            color: rgb(8, 8, 8);
+        }
+        
+        .but:hover {
+            background-color: black;
+        }
+        
+        .l1 {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            margin: 3px;
+            background-image: linear-gradient(60deg, rgb(100, 4, 4), rgb(230, 9, 9));
+            border: rgb(216, 212, 224);
+            border-style: groove;
+            border-color: black;
+            color: black;
+        }
+        
+        .l1:hover {
+            background-color: black;
+        }
+        
+        .l2 {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            margin: 3px;
+            background-image: linear-gradient(60deg, rgb(7, 51, 3), rgb(7, 211, 7));
+            border: rgb(216, 212, 224);
+            border-style: groove;
+            border-color: black;
+            color: black;
+        }
+        
+        .l2:hover {
+            background-color: black;
+        }
+        
+        .l3 {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            margin: 3px;
+            background-image: linear-gradient(60deg, rgb(79, 85, 3), rgb(229, 245, 6));
+            border: rgb(216, 212, 224);
+            border-style: groove;
+            border-color: black;
+            color: black;
+        }
+        
+        .l3:hover {
+            background-color: black;
+        }
+        
+        .l4 {
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            margin: 3px;
+            background-image: linear-gradient(60deg, rgb(12, 5, 29), rgb(171, 185, 171));
+            border: rgb(216, 212, 224);
+            border-style: groove;
+            border-color: black;
+            color: black;
+        }
+        
+        .l4:hover {
+            background-color: black;
+        }
+        
+        #resultado {
+            background-color: white;
+            width: 216px;
+            height: 30px;
+            margin: 5px;
+            border-width: 2px;
+            border-style: groove;
+            border-color: rgb(105, 105, 9);
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fundo">
+        <h1>Leo Brabo</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td> <button class="but" onclick="clean()">C</button></td>
+                    <td> <button class="but" onclick="back()"><</button></td>
+                    <td> <button class="but" onclick="insert('/')">/</button></td>
+                    <td> <button class="l1" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td> <button class="but" onclick="insert('7')">7</button></td>
+                    <td> <button class="but" onclick="insert('8')">8</button></td>
+                    <td> <button class="but" onclick="insert('9')">9</button></td>
+                    <td> <button class="l2" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td> <button class="but" onclick="insert('4')">4</button></td>
+                    <td> <button class="but" onclick="insert('5')">5</button></td>
+                    <td> <button class="but" onclick="insert('6')">6</button></td>
+                    <td> <button class="l3" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td> <button class="but" onclick="insert('1')">1</button></td>
+                    <td> <button class="but" onclick="insert('2')">2</button></td>
+                    <td> <button class="but" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"> <button class="l4" onclick="calcular()" style="height: 108px;">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <button class="but" onclick="insert('0')" style="width: 108px;">0</button></td>
+                    <td> <button class="but" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function insert(num) {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+        }
+
+        function clean() {
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        function back() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+        }
+
+        function calcular() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if (resultado) {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            } else {
+                document.getElementById('resultado').innerHTML = "vai tomar no cu";
+            }
+        }
+    </script>
+</body>
+
+</html>
